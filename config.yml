@@ -1,0 +1,248 @@
+# ═══════════════════════════════════════════════════
+# DZENROLL — Decap CMS Configuration
+# Хостинг: Jino (Git-based через GitHub + Netlify Identity
+# или через Gitea/самостоятельный Git)
+# ═══════════════════════════════════════════════════
+
+backend:
+  name: git-gateway          # Netlify Identity + Git Gateway
+  branch: main
+  # Для Jino без Netlify — используй:
+  # name: github
+  # repo: your-username/dzenroll-landing
+  # branch: main
+
+# Для работы без Netlify Identity (прямой GitHub OAuth):
+# backend:
+#   name: github
+#   repo: your-username/dzenroll-landing
+#   branch: main
+#   base_url: https://your-oauth-proxy.com
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "ru"
+
+# ─── COLLECTIONS ────────────────────────────────────
+
+collections:
+
+  # ── 1. ТЕКСТЫ САЙТА ─────────────────────────────
+  - name: "texts"
+    label: "📝 Тексты сайта"
+    files:
+      - file: "content/texts.json"
+        label: "Все текстовые блоки"
+        name: "texts"
+        fields:
+          # Header
+          - { label: "Логотип (текст)", name: "logo", widget: "string", default: "DZENROLL." }
+
+          # Hero
+          - { label: "Hero — Бейдж", name: "hero_badge", widget: "string", default: "Новый формат кальянного табака" }
+          - { label: "Hero — Заголовок (HTML)", name: "hero_title", widget: "text", default: "КАЛЬЯН ЗА<br><span class=\"grad\">5 СЕКУНД</span>" }
+          - { label: "Hero — Подзаголовок", name: "hero_sub", widget: "text", default: "Первый кальянный табак в формате ролла. Открой, положи, наслаждайся." }
+          - { label: "Hero — Кнопка 1", name: "hero_btn1", widget: "string", default: "Хочу попробовать →" }
+          - { label: "Hero — Кнопка 2", name: "hero_btn2", widget: "string", default: "Для оптовиков" }
+
+          # About
+          - { label: "О продукте — Тег", name: "about_tag", widget: "string", default: "[01] О ПРОДУКТЕ" }
+          - { label: "О продукте — Заголовок", name: "about_h2", widget: "string", default: "Это не просто табак. Это новая эра." }
+          - { label: "О продукте — Акцент", name: "about_big", widget: "text", default: "Это не просто табак. Это новая эра в кальянной индустрии." }
+          - { label: "О продукте — Описание", name: "about_p", widget: "text", default: "DZENROLL — это кальянный табак, спрессованный в компактный ролл и упакованный в блистер. Каждый ролл — идеальная порция для одной чаши." }
+          - { label: "О продукте — Факт", name: "about_fact", widget: "string", default: "🐱 В 10 раз быстрее обычного рассыпного табака" }
+
+          # Advantages
+          - { label: "Преимущества — Тег", name: "adv_tag", widget: "string", default: "[02] ПРЕИМУЩЕСТВА" }
+          - { label: "Преимущества — Заголовок", name: "adv_h2", widget: "string", default: "ПОЧЕМУ ЭТО МЕНЯЕТ ПРАВИЛА" }
+          - { label: "Адв 1 — Название", name: "adv1_name", widget: "string", default: "5 секунд" }
+          - { label: "Адв 1 — Подпись", name: "adv1_sub", widget: "string", default: "Скорость" }
+          - { label: "Адв 1 — Текст", name: "adv1_p", widget: "text", default: "Время от открытия до готовности. Никаких долгих приготовлений." }
+          - { label: "Адв 2 — Название", name: "adv2_name", widget: "string", default: "Чистые руки" }
+          - { label: "Адв 2 — Подпись", name: "adv2_sub", widget: "string", default: "Чистота" }
+          - { label: "Адв 2 — Текст", name: "adv2_p", widget: "text", default: "Блистер спрессован в табачный лист, ничего не рассыпается." }
+          - { label: "Адв 3 — Название", name: "adv3_name", widget: "string", default: "Точная дозировка" }
+          - { label: "Адв 3 — Подпись", name: "adv3_sub", widget: "string", default: "Точность" }
+          - { label: "Адв 3 — Текст", name: "adv3_p", widget: "text", default: "Один ролл = одна чаша. Всегда идеальное количество." }
+          - { label: "Адв 4 — Название", name: "adv4_name", widget: "string", default: "Равномерный прогрев" }
+          - { label: "Адв 4 — Подпись", name: "adv4_sub", widget: "string", default: "Баланс" }
+          - { label: "Адв 4 — Текст", name: "adv4_p", widget: "text", default: "Одинаковая плотность — стабильный вкус от первой до последней затяжки." }
+          - { label: "Адв 5 — Название", name: "adv5_name", widget: "string", default: "Удобная упаковка" }
+          - { label: "Адв 5 — Подпись", name: "adv5_sub", widget: "string", default: "Удобство" }
+          - { label: "Адв 5 — Текст", name: "adv5_p", widget: "text", default: "Герметичная тара, можно брать с собой куда угодно." }
+          - { label: "Адв 6 — Название", name: "adv6_name", widget: "string", default: "10 вкусов" }
+          - { label: "Адв 6 — Подпись", name: "adv6_sub", widget: "string", default: "Вкус" }
+          - { label: "Адв 6 — Текст", name: "adv6_p", widget: "text", default: "От классики до экзотики. Каждый найдёт свой идеальный вкус." }
+
+          # How it works
+          - { label: "Шаги — Тег", name: "how_tag", widget: "string", default: "[03] ИНСТРУКЦИЯ" }
+          - { label: "Шаги — Заголовок", name: "how_h2", widget: "string", default: "ТРИ ШАГА К ДЗЕНУ" }
+          - { label: "Шаг 1 — Название", name: "step1_title", widget: "string", default: "Открой" }
+          - { label: "Шаг 1 — Текст", name: "step1_p", widget: "text", default: "Сними плёнку с блистера. Это займёт буквально секунду." }
+          - { label: "Шаг 2 — Название", name: "step2_title", widget: "string", default: "Положи" }
+          - { label: "Шаг 2 — Текст", name: "step2_p", widget: "text", default: "Помести ролл в чашу. Подходит для любых стандартных чаш." }
+          - { label: "Шаг 3 — Название", name: "step3_title", widget: "string", default: "Постигни Дзен" }
+          - { label: "Шаг 3 — Текст", name: "step3_p", widget: "text", default: "Наслаждайся процессом. Ты заслужил этот момент покоя." }
+          - { label: "Таймер — Цифры", name: "timer_num", widget: "string", default: "00:05" }
+          - { label: "Таймер — Подпись", name: "timer_lbl", widget: "string", default: "ОБЩЕЕ ВРЕМЯ ЗАБИВКИ" }
+
+          # Flavors
+          - { label: "Вкусы — Тег", name: "fl_tag", widget: "string", default: "[04] ВКУСЫ" }
+          - { label: "Вкусы — Заголовок", name: "fl_h2", widget: "string", default: "10 ВКУСОВ. Каждый ролл — история." }
+
+          # Video
+          - { label: "Видео — Тег", name: "vid_tag", widget: "string", default: "ВИДЕО" }
+          - { label: "Видео — Заголовок", name: "vid_h2", widget: "string", default: "СМОТРИ, КАК ЭТО ПРОСТО" }
+          - { label: "Видео — Оверлей", name: "vid_overlay", widget: "string", default: "СМОТРИ, КАК ЭТО ПРОСТО" }
+
+          # Brand
+          - { label: "Бренд — Заголовок", name: "brand_h2", widget: "string", default: "DZENROLL — ЭТО ОТКАЗ ОТ СУЕТЫ" }
+          - { label: "Бренд — Описание", name: "brand_p", widget: "text", default: "Мы создали продукт для тех, кто ценит своё время и хочет получать удовольствие без лишних хлопот." }
+          - { label: "Бренд — Легенда", name: "brand_legend", widget: "text", default: "🐱 По легенде, кот-хранитель Дзен однажды устал ждать..." }
+          - { label: "Стат 1 — Число", name: "stat1_n", widget: "string", default: "12" }
+          - { label: "Стат 1 — Подпись", name: "stat1_l", widget: "string", default: "вкусов" }
+          - { label: "Стат 2 — Число", name: "stat2_n", widget: "string", default: "5" }
+          - { label: "Стат 2 — Подпись", name: "stat2_l", widget: "string", default: "секунд" }
+          - { label: "Стат 3 — Число", name: "stat3_n", widget: "string", default: "1=1" }
+          - { label: "Стат 3 — Подпись", name: "stat3_l", widget: "string", default: "ролл = чаша" }
+
+          # B2B
+          - { label: "B2B — Тег", name: "b2b_tag", widget: "string", default: "[05] ДЛЯ БИЗНЕСА" }
+          - { label: "B2B — Заголовок", name: "b2b_h2", widget: "string", default: "DZENROLL ДЛЯ ВАШЕГО БИЗНЕСА" }
+          - { label: "B2B 1 — Название", name: "b2b1_title", widget: "string", default: "Дистрибьюторам" }
+          - { label: "B2B 1 — Текст", name: "b2b1_p", widget: "text", default: "Эксклюзивные условия для региональных дистрибьюторов." }
+          - { label: "B2B 2 — Название", name: "b2b2_title", widget: "string", default: "Кальянным" }
+          - { label: "B2B 2 — Текст", name: "b2b2_p", widget: "text", default: "Ускорьте обслуживание гостей в 10 раз." }
+          - { label: "B2B 3 — Название", name: "b2b3_title", widget: "string", default: "Табачным сетям" }
+          - { label: "B2B 3 — Текст", name: "b2b3_p", widget: "text", default: "Новый формат для вашей полки." }
+          - { label: "Форма — Заголовок", name: "b2b_form_title", widget: "string", default: "Оставьте заявку — свяжемся в течение 2 часов" }
+          - { label: "Форма — Кнопка", name: "b2b_btn", widget: "string", default: "Отправить заявку →" }
+          - { label: "Форма — Успех", name: "form_ok_txt", widget: "string", default: "Заявка отправлена! Мы свяжемся с вами в течение 2 часов." }
+
+          # Reviews
+          - { label: "Отзывы — Тег", name: "rv_tag", widget: "string", default: "[06] ОТЗЫВЫ" }
+          - { label: "Отзывы — Заголовок", name: "rv_h2", widget: "string", default: "ГОВОРЯТ НАШИ ПАРТНЁРЫ И ГОСТИ" }
+          - { label: "Отзыв 1 — Текст", name: "rv1_txt", widget: "text", default: "«DZENROLL полностью изменил наш процесс работы...»" }
+          - { label: "Отзыв 1 — Имя", name: "rv1_name", widget: "string", default: "Алексей Морозов" }
+          - { label: "Отзыв 1 — Должность", name: "rv1_role", widget: "string", default: "Владелец кальянной «Дым & Стиль», Москва" }
+          - { label: "Отзыв 2 — Текст", name: "rv2_txt", widget: "text", default: "«Взяли на пробу 200 роллов — разошлись за неделю...»" }
+          - { label: "Отзыв 2 — Имя", name: "rv2_name", widget: "string", default: "Марина Соколова" }
+          - { label: "Отзыв 2 — Должность", name: "rv2_role", widget: "string", default: "Дистрибьютор, Санкт-Петербург" }
+          - { label: "Отзыв 3 — Текст", name: "rv3_txt", widget: "text", default: "«Удобная упаковка, стабильный вкус...»" }
+          - { label: "Отзыв 3 — Имя", name: "rv3_name", widget: "string", default: "Дмитрий Козлов" }
+          - { label: "Отзыв 3 — Должность", name: "rv3_role", widget: "string", default: "Директор табачной сети, Екатеринбург" }
+          - { label: "Отзыв 4 — Текст", name: "rv4_txt", widget: "text", default: "«Как любитель кальяна — это просто находка...»" }
+          - { label: "Отзыв 4 — Имя", name: "rv4_name", widget: "string", default: "Кирилл Петров" }
+          - { label: "Отзыв 4 — Должность", name: "rv4_role", widget: "string", default: "Постоянный гость, Казань" }
+
+          # FAQ
+          - { label: "FAQ — Тег", name: "faq_tag", widget: "string", default: "[07] ВОПРОСЫ" }
+          - { label: "FAQ — Заголовок", name: "faq_h2", widget: "string", default: "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ" }
+          - { label: "FAQ 1 — Вопрос", name: "faq1_q", widget: "string", default: "Сколько роллов в упаковке?" }
+          - { label: "FAQ 1 — Ответ", name: "faq1_a", widget: "text", default: "В стандартной упаковке 10 роллов..." }
+          - { label: "FAQ 2 — Вопрос", name: "faq2_q", widget: "string", default: "Подходит ли для любых чаш?" }
+          - { label: "FAQ 2 — Ответ", name: "faq2_a", widget: "text", default: "Да, DZENROLL подходит для всех стандартных кальянных чаш..." }
+          - { label: "FAQ 3 — Вопрос", name: "faq3_q", widget: "string", default: "Как долго курится один ролл?" }
+          - { label: "FAQ 3 — Ответ", name: "faq3_a", widget: "text", default: "Один ролл рассчитан на 45–60 минут курения..." }
+          - { label: "FAQ 4 — Вопрос", name: "faq4_q", widget: "string", default: "Есть ли никотин? Какая крепость?" }
+          - { label: "FAQ 4 — Ответ", name: "faq4_a", widget: "text", default: "DZENROLL выпускается в трёх вариантах крепости..." }
+          - { label: "FAQ 5 — Вопрос", name: "faq5_q", widget: "string", default: "Как начать сотрудничество оптом?" }
+          - { label: "FAQ 5 — Ответ", name: "faq5_a", widget: "text", default: "Заполните форму в разделе «Для бизнеса»..." }
+
+          # CTA
+          - { label: "CTA — Заголовок", name: "cta_h2", widget: "string", default: "НАЙДИ СВОЙ ДЗЕН" }
+          - { label: "CTA — Подзаголовок", name: "cta_sub", widget: "text", default: "Попробуй новый формат кальянного табака." }
+          - { label: "CTA — Кнопка 1", name: "cta_btn1", widget: "string", default: "Выбрать вкус" }
+          - { label: "CTA — Кнопка 2", name: "cta_btn2", widget: "string", default: "Стать партнёром" }
+
+          # Footer
+          - { label: "Footer — Копирайт", name: "footer_copy", widget: "text", default: "© 2025 DZENROLL. Все права защищены." }
+          - { label: "Footer — Телефон", name: "footer_phone", widget: "string", default: "8 800 123-45-67" }
+          - { label: "Footer — Email", name: "footer_email", widget: "string", default: "info@dzenroll.ru" }
+
+  # ── 2. НАСТРОЙКИ (цвета, шрифты, контакты) ──────
+  - name: "settings"
+    label: "⚙️ Настройки"
+    files:
+      - file: "content/settings.json"
+        label: "Глобальные настройки"
+        name: "settings"
+        fields:
+          - label: "Цветовая схема"
+            name: "colors"
+            widget: "object"
+            fields:
+              - { label: "Акцентный оранжевый", name: "accent_orange", widget: "color", default: "#FF6B35" }
+              - { label: "Акцентный мятный",    name: "accent_mint",   widget: "color", default: "#00D2A1" }
+              - { label: "Акцентный фиолетовый",name: "accent_purple", widget: "color", default: "#5B2C8E" }
+              - { label: "Тёмный фон",           name: "bg_dark",      widget: "color", default: "#1A2A3A" }
+              - { label: "Основной текст",        name: "text_main",    widget: "color", default: "#2D3436" }
+
+          - label: "Шрифты"
+            name: "fonts"
+            widget: "object"
+            fields:
+              - { label: "Заголовочный (Google Fonts)", name: "heading_font", widget: "string", default: "Montserrat" }
+              - { label: "Основной текст (Google Fonts)", name: "body_font",  widget: "string", default: "Inter" }
+
+          - label: "Контакты"
+            name: "contacts"
+            widget: "object"
+            fields:
+              - { label: "Телефон", name: "phone", widget: "string", default: "8 800 123-45-67" }
+              - { label: "Email",   name: "email", widget: "string", default: "info@dzenroll.ru" }
+              - { label: "Telegram (ссылка)", name: "telegram", widget: "string", default: "https://t.me/dzenroll" }
+              - { label: "VK (ссылка)",       name: "vk",       widget: "string", default: "https://vk.com/dzenroll" }
+
+  # ── 3. МЕДИА ─────────────────────────────────────
+  - name: "media"
+    label: "🖼️ Медиа"
+    files:
+      - file: "content/media.json"
+        label: "Медиа-контент"
+        name: "media"
+        fields:
+          - label: "Медиа-элементы"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Ключ (key)", name: "key", widget: "string" }
+              - label: "Тип"
+                name: "kind"
+                widget: "select"
+                options:
+                  - { label: "Изображение", value: "image" }
+                  - { label: "Видео (YouTube/Vimeo/MP4)", value: "video" }
+                  - { label: "Ссылка", value: "link" }
+                  - { label: "3D-модель (.glb/.gltf)", value: "model" }
+              - { label: "Изображение", name: "image", widget: "image", required: false }
+              - { label: "Видео URL (YouTube/Vimeo/MP4)", name: "video_url", widget: "string", required: false }
+              - { label: "3D-модель URL (.glb)", name: "model_url", widget: "file", required: false, media_library: { config: { multiple: false } } }
+              - { label: "Ссылка URL", name: "link_url", widget: "string", required: false }
+              - { label: "Alt-текст", name: "alt", widget: "string", required: false }
+              - { label: "Открывать в новом окне", name: "new_tab", widget: "boolean", default: false }
+
+  # ── 4. ВКУСЫ ─────────────────────────────────────
+  - name: "flavors_collection"
+    label: "🍋 Вкусы"
+    files:
+      - file: "content/flavors.json"
+        label: "Список вкусов"
+        name: "flavors"
+        fields:
+          - label: "Вкусы"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Slug (URL-имя)", name: "slug", widget: "string" }
+              - { label: "Эмодзи", name: "emoji", widget: "string", default: "🌿" }
+              - { label: "Описание", name: "description", widget: "text" }
+              - label: "Категория"
+                name: "category"
+                widget: "select"
+                options: ["Фруктовый", "Ягодный", "Цитрусовый", "Классический", "Экзотический"]
+              - { label: "Крепость (1–3)", name: "strength", widget: "number", min: 1, max: 3, default: 2 }
+              - { label: "Цвет карточки (hex)", name: "color", widget: "color", default: "#FF9500" }
+              - { label: "Изображение (опционально)", name: "image", widget: "image", required: false }
